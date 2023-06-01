@@ -1,0 +1,361 @@
+<div class="container">
+  <div class="row p-2">
+    <div class="col-sm-8">
+      <div class="row mb-3">
+        <div class="col">
+          <p class="text-uppercase card-title">
+            {{ movieDetail?.genre?.type }} - Official Trailer (HD)
+          </p>
+          <iframe
+            width="100%"
+            height="315"
+            [src]="
+              getYouTubeEmbedUrl(movieDetail?.youtubeTrailer?.url || '') | async
+            "
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-2">
+                <img
+                  src="{{ movieDetail?.poster }}"
+                  alt="movie poster {{ movieDetail?.title }}"
+                  style="width: 100%; height: 315"
+                  class="img-fluid rounded-start"
+                />
+              </div>
+              <div class="col-10">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title">{{ movieDetail?.title }}</h5>
+                    </div>
+                    <div class="col">
+                      <strong style="align-items: end"
+                        ><app-popularity
+                          [popularity]="movieDetail?.popularity"
+                        ></app-popularity
+                      ></strong>
+                    </div>
+                  </div>
+                  <p class="card-text" id="information">
+                    <strong>Duration:</strong>
+                    <small class="text-muted"
+                      >{{ movieDetail?.duration }} mins</small
+                    >
+                    <br />
+                    <strong>Country:</strong>
+                    <small class="text-muted"
+                      >{{ movieDetail?.country }}
+                    </small>
+                    <br />
+                    <strong>Release date:</strong>
+                    <small class="text-muted">
+                      {{ movieDetail?.releaseDate | date : "YYYY/MM/dd" }}
+                    </small>
+                    <br />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="row">
+        <div class="col">
+          <p class="text-uppercase">Director</p>
+          <div
+            id="director-card"
+            class="card mb-3"
+            style="max-width: 540px"
+            routerLink="/directors/{{ movieDetail?.director?.id }}"
+            (click)="closeModal()"
+          >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="{{ movieDetail?.director?.photo }}"
+                  style="width: 100%; height: 100%"
+                  class="img-fluid rounded-start"
+                  alt="director's picture {{ movieDetail?.director?.name }}"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movieDetail?.director?.name }}</h5>
+                  <p class="card-text">
+                    Nationality:
+                    <small class="text-muted">
+                      {{ movieDetail?.director?.nationality }}
+                    </small>
+                    <br />
+                    Birth date:
+                    <small class="text-muted">
+                      {{
+                        movieDetail?.director?.birthDate | date : "YYYY-MM-dd"
+                      }}
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-uppercase">Add actor</p>
+          <div>
+            <form
+              [formGroup]="addActorForm"
+              (ngSubmit)="
+                !addActorForm.invalid &&
+                  addActor(addActorForm.value.actor, movieDetail?.id)
+              "
+            >
+              <div class="input-group mb-3">
+                <select
+                  id="add_actor_field"
+                  class="form-control"
+                  formControlName="actor"
+                >
+                  <option
+                    *ngFor="let actor of nonAssignedActors"
+                    [value]="actor.id"
+                  >
+                    {{ actor.name }}
+                  </option>
+                </select>
+
+                <div class="input-group-append">
+                  <button
+                    id="add_actor_btn"
+                    [disabled]="!addActorForm.valid"
+                    type="submit"
+                    class="btn btn-outline-primary"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="
+                  addActorForm.get('actor')!.hasError('invalidActor') &&
+                  addActorForm.get('actor')!.touched
+                "
+              >
+                Please pick one actor from the list of actors provided
+              </div>
+            </form>
+          </div>
+
+          <p class="text-uppercase">Actors</p>
+          <div
+            id="carouselExampleFade"
+            class="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div
+                class="carousel-item"
+                [ngClass]="{ active: i === 0 }"
+                *ngFor="let actor of movieDetail?.actors; let i = index"
+              >
+                <div
+                  id="actor-card"
+                  class="card mb-3"
+                  style="max-width: 540px"
+                  routerLink="/actors/{{ actor.id }}"
+                  (click)="closeModal()"
+                >
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img
+                        src="{{ actor.photo }}"
+                        style="width: 100%; height: 100%"
+                        class="img-fluid rounded-start"
+                        alt="image of {{ actor.name }}"
+                      />
+                    </div>
+                    <div class="col-md-8 actorDescription">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ actor.name }}</h5>
+                        <p class="card-text">
+                          Nationality:
+                          <small class="text-muted">
+                            {{ actor.nationality }}
+                          </small>
+                          <br />
+                          Birth date:
+                          <small class="text-muted">
+                            {{ actor.birthDate | date : "YYYY-MM-dd" }}
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="text-uppercase">Add platform</p>
+        <div>
+          <form
+            [formGroup]="addPlatformForm"
+            (ngSubmit)="
+              !addPlatformForm.invalid &&
+                addPlatform(addPlatformForm.value.name, movieDetail?.id)
+            "
+          >
+            <div class="input-group mb-3">
+              <select
+                id="add_platform_field"
+                class="form-control"
+                formControlName="name"
+              >
+                <option
+                  *ngFor="let platform of nonAssignedPlatforms"
+                  [value]="platform.id"
+                >
+                  {{ platform.name }}
+                </option>
+              </select>
+
+              <div class="input-group-append">
+                <button
+                  id="add_platform_btn"
+                  [disabled]="!addPlatformForm.valid"
+                  type="submit"
+                  class="btn btn-outline-primary"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="
+                addPlatformForm.get('name')!.hasError('invalidPlatform') &&
+                addPlatformForm.get('name')!.touched
+              "
+            >
+              Please pick one platform from the list of platforms provided
+            </div>
+          </form>
+        </div>
+        <div class="col">
+          <p class="text-uppercase">available in</p>
+          <div class="list-group">
+            <a
+              href="{{ platform.url }}"
+              target="_blank"
+              class="list-group-item list-group-item-action"
+              *ngFor="let platform of movieDetail?.platforms"
+            >
+              {{ platform.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p class="text-uppercase">Comments</p>
+      <form class="row" [formGroup]="addReviewForm">
+        <div class="row mb-3">
+          <div class="col-1">
+            <input
+              id="reviewInput"
+              type="number"
+              class="form-control"
+              formControlName="score"
+              placeholder="Score"
+              min="1"
+              max="5"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-2">
+            <input
+              id="creatorInput"
+              type="text"
+              class="form-control"
+              formControlName="creator"
+              placeholder="Creator"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-group mb-3">
+            <input
+              id="reviewInput"
+              type="text"
+              class="form-control"
+              formControlName="text"
+              placeholder="Review"
+            />
+            <div class="input-group-append">
+              <button
+                id="addBtn"
+                class="btn btn-outline-primary"
+                (click)="addReview()"
+                [disabled]="!addReviewForm.valid"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr />
+      <div
+        id="{{ review.id }}"
+        class="review col"
+        *ngFor="let review of movieDetail?.reviews"
+      >
+        <h2>{{ review.creator }}</h2>
+        <strong style="align-items: end"
+          ><app-popularity [popularity]="review.score"></app-popularity
+        ></strong>
+        <p>{{ review.text }}</p>
+      </div>
+    </div>
+  </div>
+</div>

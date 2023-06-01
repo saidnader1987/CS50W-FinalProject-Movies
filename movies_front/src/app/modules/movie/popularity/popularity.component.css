@@ -1,0 +1,15 @@
+.rating-list li {
+  float: right;
+  color: #ededed;
+  padding: 10px 5px;
+}
+
+.rating-list li:hover ~ li,
+.rating-list li.selected {
+  color: #0066ff;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}

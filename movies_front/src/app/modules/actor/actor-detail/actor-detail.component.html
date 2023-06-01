@@ -1,0 +1,101 @@
+<div *ngIf="actorDetail" class="container-fluid">
+  <p class="h3 p-3">{{ actorDetail.name }}</p>
+  <div class="row row--shadow-blue">
+    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+      <div class="thumb">
+        <img
+          class="img-fluid"
+          src="{{ actorDetail.photo }}"
+          alt="Image of actor {{ actorDetail.name }}"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-8 col-lg-9">
+      <div>
+        <dl>
+          <dt class="bold">Biography</dt>
+          <dd class="caption">{{ actorDetail.biography }}</dd>
+        </dl>
+        <hr />
+        <dl>
+          <dt>Nationality</dt>
+          <dd>
+            <span class="nationality-wrapper">
+              {{ actorDetail.nationality }}
+              <img
+                class="flag-image"
+                src="{{ flagImage }}"
+                alt="Image of {{ actorDetail.nationality }}'s flag"
+              />
+            </span>
+          </dd>
+        </dl>
+        <hr />
+        <dl>
+          <dt>Birth date</dt>
+          <dd>
+            {{ formatDate(actorDetail.birthDate) }}
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-6 p-5">
+    <p class="h5 p-3">Movies from this actor:</p>
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-2"
+      *ngFor="let movie of actorDetail.movies"
+    >
+      <div
+        class="card mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#movieDetailModal"
+        (click)="onMovieSelected(movie)"
+      >
+        <div class="text-center">
+          <img
+            class="card-img-top custom-card-img"
+            src="{{ movie.poster }}"
+            alt="Movie {{ movie.title }}'s poster"
+          />
+        </div>
+        <div class="card-body custom-card-body">
+          <p class="card-title custom-card-title">{{ movie.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="movieDetailModal"
+  tabindex="-1"
+  aria-labelledby="movieDetailModalLabel"
+  style="display: none"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title h4" id="movieDetailModalLabel">
+          {{ selectedMovie?.title }} - Detail
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-movie-detail [movieDetail]="selectedMovie"></app-movie-detail>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

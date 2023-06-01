@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-12">
+    <ul
+      class="list-inline rating-list"
+      *ngFor="let star of stars"
+      style="display: inline-block"
+    >
+      <li [ngClass]="{ selected: star <= selectedValue }">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </li>
+    </ul>
+  </div>
+</div>

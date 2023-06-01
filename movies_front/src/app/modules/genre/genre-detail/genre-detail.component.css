@@ -1,0 +1,33 @@
+.card {
+  display: block;
+  flex: 0 0 calc(100% / 5);
+  cursor: pointer;
+  float: left;
+}
+
+.card,
+card:hover {
+  text-decoration: none;
+}
+
+.card:hover {
+  opacity: 0.8;
+}
+
+.card-img-top {
+  height: 250px;
+}
+
+.btnArea {
+  color: #ffd700;
+}
+
+.prev {
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.next {
+  right: 5%;
+  transform: translate(-50%, -50%);
+}

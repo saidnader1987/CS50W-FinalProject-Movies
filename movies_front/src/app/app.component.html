@@ -1,0 +1,33 @@
+<body>
+  <nav
+    class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-dark bg-primary"
+  >
+    <a class="navbar-brand" href="">MOVIES APP</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNavbar()"
+      aria-controls="navbarNavAltMarkup"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      [ngClass]="{ show: !isNavbarCollapsed }"
+      class="collapse navbar-collapse"
+      id="navbarNavAltMarkup"
+    >
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="">Movies</a>
+        <a class="nav-item nav-link" routerLink="/actors/list">Actors</a>
+        <a class="nav-item nav-link" routerLink="/directors/list">Directors</a>
+        <a class="nav-item nav-link" routerLink="/genres/list">Genres</a>
+        <a class="nav-item nav-link" routerLink="/platforms/list">Platforms</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid overflow-auto">
+    <router-outlet></router-outlet>
+  </div>
+</body>

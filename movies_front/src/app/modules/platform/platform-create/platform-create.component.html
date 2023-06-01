@@ -1,0 +1,106 @@
+<div class="modal-header">
+  <h5 class="modal-title h4" id="platformModalLabel">Add a platform</h5>
+  <button
+    (click)="cancelCreation()"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="platformForm"
+    (ngSubmit)="!platformForm.invalid && createGenre(platformForm.value)"
+  >
+    <div class="form-group mb-2">
+      <label for="name">Name</label>
+      <input
+        novalidate
+        type="text"
+        id="name"
+        class="form-control mb-1"
+        formControlName="name"
+        placeholder="Platforms's name"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          platformForm.get('name')!.hasError('required') &&
+          platformForm.get('name')!.touched
+        "
+      >
+        Name required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="platformForm.get('name')!.hasError('minlength')"
+      >
+        Name too short
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="platformForm.get('name')!.hasError('maxlength')"
+      >
+        Name too long (maximum characters: 50)
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="url">Url</label>
+      <input
+        novalidate
+        type="text"
+        id="url"
+        class="form-control mb-1"
+        formControlName="url"
+        placeholder="url of platform"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          platformForm.get('url')!.hasError('required') &&
+          platformForm.get('url')!.touched
+        "
+      >
+        url required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="platformForm.get('url')!.hasError('minlength')"
+      >
+        url too short
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="platformForm.get('url')!.hasError('maxlength')"
+      >
+        url too long (maximum characters: 50)
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="platformForm.get('url')!.hasError('pattern')"
+      >
+        Not a valid url
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        [disabled]="!platformForm.valid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Create
+      </button>
+      <button
+        (click)="cancelCreation()"
+        type="button"
+        class="btn btn-danger"
+        data-bs-dismiss="modal"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

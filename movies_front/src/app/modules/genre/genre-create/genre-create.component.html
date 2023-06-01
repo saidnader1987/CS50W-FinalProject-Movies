@@ -1,0 +1,67 @@
+<div class="modal-header">
+  <h5 class="modal-title h4" id="actorModalLabel">Add Genre</h5>
+  <button
+    (click)="cancelCreation()"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="genreForm"
+    (ngSubmit)="!genreForm.invalid && createGenre(genreForm.value)"
+  >
+    <div class="form-group mb-2">
+      <label for="type">Type</label>
+      <input
+        novalidate
+        type="text"
+        id="type"
+        class="form-control mb-1"
+        formControlName="type"
+        placeholder="Genre's type"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          genreForm.get('type')!.hasError('required') &&
+          genreForm.get('type')!.touched
+        "
+      >
+        Type required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="genreForm.get('type')!.hasError('minlength')"
+      >
+        Type too short
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="genreForm.get('type')!.hasError('maxlength')"
+      >
+        Type too long (maximum characters: 50)
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        [disabled]="!genreForm.valid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Create
+      </button>
+      <button
+        (click)="cancelCreation()"
+        type="button"
+        class="btn btn-danger"
+        data-bs-dismiss="modal"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

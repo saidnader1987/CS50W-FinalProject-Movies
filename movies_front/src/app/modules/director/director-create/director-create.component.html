@@ -1,0 +1,193 @@
+<div class="modal-header">
+  <h5 class="modal-title h4" id="directorModalLabel">Add a director</h5>
+  <button
+    (click)="cancelCreation()"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="directorForm"
+    (ngSubmit)="!directorForm.invalid && createDirector(directorForm.value)"
+  >
+    <div class="form-group mb-2">
+      <label for="name">Name</label>
+      <input
+        novalidate
+        type="text"
+        id="name"
+        class="form-control mb-1"
+        formControlName="name"
+        placeholder="Director's name"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          directorForm.get('name')!.hasError('required') &&
+          directorForm.get('name')!.touched
+        "
+      >
+        Name required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="directorForm.get('name')!.hasError('minlength')"
+      >
+        Name too short
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="directorForm.get('name')!.hasError('maxlength')"
+      >
+        Name too long (maximum characters: 50)
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="photo">Image url</label>
+      <input
+        novalidate
+        type="text"
+        id="photo"
+        class="form-control mb-1"
+        formControlName="photo"
+        placeholder="Director's image url"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          directorForm.get('photo')!.hasError('required') &&
+          directorForm.get('photo')!.touched
+        "
+      >
+        Image url required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="directorForm.get('photo')!.hasError('pattern')"
+      >
+        Not a valid url
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="birthDate">Birth date</label>
+      <input
+        novalidate
+        type="date"
+        class="form-control mb-1"
+        id="birthDate"
+        formControlName="birthDate"
+      />
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="
+        directorForm.get('birthDate')!.hasError('required') &&
+        directorForm.get('birthDate')!.touched
+      "
+    >
+      Birth date required
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="
+        directorForm.get('birthDate')!.hasError('invalidDate') &&
+        directorForm.get('birthDate')!.touched
+      "
+    >
+      Please provide a valid date
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="
+        directorForm.get('birthDate')!.hasError('futureDate') &&
+        directorForm.get('birthDate')!.touched
+      "
+    >
+      The date should be before today
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="nationality">Nationality</label>
+      <input
+        novalidate
+        list="nationalities"
+        id="nationality"
+        name="nationality"
+        class="form-control mb-1"
+        formControlName="nationality"
+        placeholder="Director's nationality"
+      />
+      <datalist id="nationalities">
+        <option
+          *ngFor="let country of countries"
+          value="{{ country }}"
+        ></option>
+      </datalist>
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="
+        directorForm.get('nationality')!.hasError('invalidCountry') &&
+        directorForm.get('nationality')!.touched
+      "
+    >
+      Please pick one country from the list of countries provided
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="biography">Biography</label>
+      <textarea
+        novalidate
+        type="textarea"
+        id="biography"
+        class="form-control mb-1"
+        formControlName="biography"
+        placeholder="Director's biography"
+      ></textarea>
+      <div
+        class="text-danger"
+        *ngIf="
+          directorForm.get('biography')!.hasError('required') &&
+          directorForm.get('biography')!.touched
+        "
+      >
+        Biography required
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="directorForm.get('biography')!.hasError('minlength')"
+      >
+        Biography too short
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="directorForm.get('biography')!.hasError('maxlength')"
+      >
+        Biographt too long (maximum characters: 500)
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        [disabled]="!directorForm.valid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Create
+      </button>
+      <button
+        (click)="cancelCreation()"
+        type="button"
+        class="btn btn-danger"
+        data-bs-dismiss="modal"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

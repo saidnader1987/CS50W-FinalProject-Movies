@@ -1,0 +1,57 @@
+.thumb img {
+  width: 300px;
+  height: 250px;
+  /*Scale down will take the necessary specified space that is 100px x 100px without stretching the image*/
+  object-fit: scale-down;
+}
+
+.nationality-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.flag-image {
+  width: 32px;
+  height: auto;
+  margin-left: 8px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+}
+
+.row {
+  padding: 5px;
+}
+
+.row--shadow-blue {
+  background-color: #f3faff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+}
+
+.custom-card-title {
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.custom-card-img {
+  height: 90px;
+  object-fit: cover;
+}
+
+.custom-card-body {
+  max-height: 50px;
+  text-align: center;
+}
+
+.card {
+  cursor: pointer;
+  transition: all, 0.3s;
+  border: none;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.07);
+}
+
+.card:hover {
+  transform: translateY(-5%);
+}

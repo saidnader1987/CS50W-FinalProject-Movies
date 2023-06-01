@@ -1,0 +1,72 @@
+<div
+  *ngIf="genreDetail"
+  class="container-fluid overflow-auto"
+  style="height: 90vh; overflow-y: scroll"
+  tabindex="0"
+>
+  <p class="h5 p-3">Movies from {{ genreDetail.type }} genre:</p>
+  <div class="row" data-bs-toggle="modal" data-bs-target="#movieDetailModal">
+    <div
+      class="card p-2 zoomHover"
+      (click)="onSelectMovie(movie)"
+      *ngFor="let movie of genreDetail.movies"
+    >
+      <img
+        src="{{ movie.poster }}"
+        class="card-img-top"
+        alt="{{ movie.title }}"
+      />
+      <div class="card-body">
+        <strong style="align-items: end"
+          ><app-popularity [popularity]="movie.popularity"></app-popularity
+        ></strong>
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">
+          <strong>Duration:</strong> {{ movie.duration }} minutes <br />
+          <strong>Release date:</strong>
+          {{ movie.releaseDate | date : "YYYY/MM/dd" }} <br />
+          <strong>Country:</strong> {{ movie.country }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="movieDetailModal"
+    tabindex="-1"
+    aria-labelledby="movieDetailModalLabel"
+    style="display: none"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title h4" id="movieDetailModalLabel">
+            {{ selectedMovieDetail?.title }} - Detail
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <app-movie-detail
+            [movieDetail]="selectedMovieDetail"
+          ></app-movie-detail>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

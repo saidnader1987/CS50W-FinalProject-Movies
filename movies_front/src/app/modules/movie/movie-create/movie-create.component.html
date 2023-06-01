@@ -1,0 +1,311 @@
+<div class="modal-header">
+  <h5 class="modal-title h4" id="actorModalLabel">Add a new movie</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-2">
+      <div class="list-group" id="list-tab" role="tablist">
+        <a
+          class="list-group-item list-group-item-action active"
+          id="list-home-list"
+          data-bs-toggle="list"
+          href="#list-home"
+          role="tab"
+          aria-controls="list-home"
+          >Movie detail</a
+        >
+        <a
+          class="list-group-item list-group-item-action"
+          id="list-profile-list"
+          data-bs-toggle="list"
+          href="#list-profile"
+          role="tab"
+          aria-controls="list-profile"
+          >Trailer info</a
+        >
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="list-home"
+          role="tabpanel"
+          aria-labelledby="list-home-list"
+          [formGroup]="movieFormGroup"
+        >
+          <div class="form-group mb-2">
+            <label for="title"> Title </label>
+            <input
+              novalidate
+              type="text"
+              id="title"
+              class="form-control mb-1"
+              formControlName="title"
+              placeholder="Title"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('title')!.hasError('required') &&
+                movieFormGroup.get('title')!.touched
+              "
+            >
+              Title required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="poster"> Poster </label>
+            <input
+              novalidate
+              type="text"
+              id="poster"
+              class="form-control mb-1"
+              formControlName="poster"
+              placeholder="Poster"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('poster')!.hasError('required') &&
+                movieFormGroup.get('poster')!.touched
+              "
+            >
+              Poster required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="duration"> Duration </label>
+            <div class="input-group mb-3">
+              <input
+                novalidate
+                type="number"
+                min="1"
+                class="form-control"
+                formControlName="duration"
+                id="movieDuration"
+                placeholder="Duration"
+                aria-label="Duration"
+                aria-describedby="basic-addon2"
+              />
+              <span class="input-group-text" id="basic-addon2">min</span>
+            </div>
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('duration')!.hasError('required') &&
+                movieFormGroup.get('duration')!.touched
+              "
+            >
+              Duration required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="country"> Country </label>
+            <select class="form-control" formControlName="country">
+              <option *ngFor="let country of lstCountries" [value]="country">
+                {{ country }}
+              </option>
+            </select>
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('country')!.hasError('required') &&
+                movieFormGroup.get('country')!.touched
+              "
+            >
+              Country required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="releaseDate"> Release Date </label>
+            <input
+              novalidate
+              type="date"
+              id="releaseDate"
+              class="form-control mb-1"
+              formControlName="releaseDate"
+              placeholder="releaseDate"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('releaseDate')!.hasError('required') &&
+                movieFormGroup.get('releaseDate')!.touched
+              "
+            >
+              Release Date required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="genre"> Genre </label>
+            <select class="form-control" formControlName="selectedGenre">
+              <option *ngFor="let genre of lstGenres" [value]="genre.id">
+                {{ genre.type }}
+              </option>
+            </select>
+
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('selectedGenre')!.hasError('required') &&
+                movieFormGroup.get('selectedGenre')!.touched
+              "
+            >
+              Genre required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="director"> Director </label>
+            <select class="form-control" formControlName="selectedDirector">
+              <option
+                *ngFor="let director of lstDirectors"
+                [value]="director.id"
+              >
+                {{ director.name }}
+              </option>
+            </select>
+            <p
+              class="text-danger"
+              *ngIf="
+                movieFormGroup.get('selectedDirector')!.hasError('required') &&
+                movieFormGroup.get('selectedDirector')!.touched
+              "
+            >
+              Director required
+            </p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="list-profile"
+          role="tabpanel"
+          aria-labelledby="list-profile-list"
+          [formGroup]="youtubeTrailerGroup"
+        >
+          <div class="form-group mb-2">
+            <label for="name"> Name </label>
+            <input
+              novalidate
+              type="text"
+              id="name"
+              class="form-control mb-1"
+              formControlName="name"
+              placeholder="Name"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                youtubeTrailerGroup.get('name')!.hasError('required') &&
+                youtubeTrailerGroup.get('name')!.touched
+              "
+            >
+              Name required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="url"> Url </label>
+            <input
+              novalidate
+              type="text"
+              id="url"
+              class="form-control mb-1"
+              formControlName="url"
+              placeholder="Url"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                youtubeTrailerGroup.get('url')!.hasError('required') &&
+                youtubeTrailerGroup.get('url')!.touched
+              "
+            >
+              Url required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="duration"> Duration </label>
+            <div class="input-group mb-3">
+              <input
+                novalidate
+                type="number"
+                min="1"
+                class="form-control"
+                formControlName="duration"
+                id="trailerDuration"
+                placeholder="Duration"
+                aria-label="Duration"
+                aria-describedby="basic-addon2"
+              />
+              <span class="input-group-text" id="basic-addon2">min</span>
+            </div>
+            <p
+              class="text-danger"
+              *ngIf="
+                youtubeTrailerGroup.get('duration')!.hasError('required') &&
+                youtubeTrailerGroup.get('duration')!.touched
+              "
+            >
+              Duration required
+            </p>
+          </div>
+
+          <div class="form-group mb-2">
+            <label for="channel"> Channel </label>
+            <input
+              novalidate
+              type="text"
+              id="channel"
+              class="form-control mb-1"
+              formControlName="channel"
+              placeholder="Channel"
+            />
+            <p
+              class="text-danger"
+              *ngIf="
+                youtubeTrailerGroup.get('channel')!.hasError('required') &&
+                youtubeTrailerGroup.get('channel')!.touched
+              "
+            >
+              Channel required
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      [disabled]="!movieFormGroup.valid || !youtubeTrailerGroup.valid"
+      (click)="createMovie()"
+      class="btn btn-primary"
+      id="createBtn"
+    >
+      Create
+    </button>
+    <button
+      (click)="resetForms()"
+      class="btn btn-danger"
+      data-bs-dismiss="modal"
+      id="cancelBtn"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

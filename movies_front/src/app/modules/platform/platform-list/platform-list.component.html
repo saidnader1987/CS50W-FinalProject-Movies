@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="row">
+    <aside class="col-12 col-sm-5 col-md-4 col-lg-3">
+      <div class="container text-center">
+        <div class="row align-items-start">
+          <div class="col">
+            <div class="d-flex justify-content-between m-2">
+              <div class="search-bar">
+                <input
+                  [(ngModel)]="searchTerm"
+                  (input)="onSearch()"
+                  type="text"
+                  placeholder="Search platform"
+                  class="form-control"
+                />
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#platformModal"
+              >
+                Add
+              </button>
+            </div>
+
+            <ul *ngFor="let platform of filteredPlatform" class="list-group">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+                [class.active]="selectedPlatform === platform"
+                (click)="onSelected(platform)"
+              >
+                <span spanName>
+                  {{ platform.name }}
+                </span>
+              </li>
+            </ul>
+            <div
+              class="alert alert-warning"
+              role="alert"
+              *ngIf="filteredPlatform.length == 0"
+            >
+              Platform {{ searchTerm }} not found!
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="col-12 col-sm-7 col-md-8 col-lg-9">
+      <app-platform-detail [platformDetail]="selectedPlatform">
+      </app-platform-detail>
+    </main>
+  </div>
+</div>
+
+<div
+  #platformModal
+  class="modal fade"
+  id="platformModal"
+  tabindex="-1"
+  aria-labelledby="genreModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <app-create-platform
+        (platformCreated)="closeModal()"
+      ></app-create-platform>
+    </div>
+  </div>
+</div>
