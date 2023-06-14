@@ -8,9 +8,19 @@
 
 _Movies app_ is a management web application for your movies. Its backend is written in Python using Django and its frontend is written in Typescript using Angular.
 
-With this program you can manage a database for your movies, directors and actors.
+With this application you can manage a database for your movies, directors and actors.
 
----
+## **Introduction and Justification**
+
+_Movies App_ is a distinctive and multifaceted web application for managing your personal movies collection. In contrast to the more focused projects in this course, this app interweaves multiple components including movies, directors, actors, genres, and platforms into a seamless, interconnected user experience. It employs Python and Django for the backend and Typescript and Angular for the frontend, offering a perfect blend of Django's powerful database management and Angular's dynamic and robust frontend capabilities.
+
+## **Distinctiveness and Complexity**
+
+The _Movies App_ distinguishes itself through its multi-layered and interconnected approach to movie management. While previous course projects, such as the Google Search and Wikipedia-like web page, focused on specific isolated tasks, _Movies App_ elevates this complexity by integrating several components into one seamless interface.
+
+This application also expands on the complexity presented in the eBay-like app and the mail app developed during the course. While these projects utilized Django and JavaScript separately, _Movies App_ harmonizes these technologies along with TypeScript and Angular. This amalgamation of technologies presents a more realistic simulation of real-world application development, which often involves navigating and integrating multiple languages and frameworks.
+
+Furthermore, the decision to use Angular for the frontend, despite only a brief introduction to React in the course, exhibits an additional layer of complexity. Learning and implementing a new framework independently demonstrates not only technical ability but also adaptability and self-directed learning—key attributes in modern web development.
 
 ## **How to Run**
 
