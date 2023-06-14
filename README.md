@@ -77,10 +77,6 @@ Make sure you have the following installed:
 
 Now you should have both the backend and frontend of the application running. **Enjoy!**
 
----
-
-This text can be directly copied and pasted into a README.md file and it will render as intended on GitHub, Bitbucket, or any other platform that supports markdown.
-
 ## **Features**
 
 1. _Movie list:_ A list sorted by genre of all your movies
