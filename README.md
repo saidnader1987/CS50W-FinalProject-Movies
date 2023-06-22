@@ -6,6 +6,7 @@ This project was a team effort and wouldn't have been possible without the combi
 
 - [Ricardo Vivas](https://github.com/rvivast)
 - [Fabian Orozco](https://github.com/DevForozco)
+- Myself
 
 Their contributions to the front-end development in Angular were much appreciated. While the back-end was my responsibility, this project truly reflects our collaborative work. Thanks for your valuable collaboration.
 
