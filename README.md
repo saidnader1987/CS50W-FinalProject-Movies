@@ -1,5 +1,14 @@
 # **Movies App**
 
+## Acknowledgements
+
+This project was a team effort and wouldn't have been possible without the combined efforts of:
+
+- [Ricardo Vivas](https://github.com/rvivast)
+- [Fabian Orozco](https://github.com/DevForozco)
+
+Their contributions to the front-end development in Angular were much appreciated. While the back-end was my responsibility, this project truly reflects our collaborative work. Thanks for your valuable collaboration.
+
 #### **Video Demo:** <https://www.youtube.com/watch?v=MFOxEq9t7nA>
 
 #### **Description:** Movie management app
