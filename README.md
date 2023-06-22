@@ -2,13 +2,16 @@
 
 ## Acknowledgements
 
-This project was a team effort and wouldn't have been possible without the combined efforts of:
+The front-end of this project was a team effort between 2 great developers and myself. I would like to thank:
 
 - [Ricardo Vivas](https://github.com/rvivast)
 - [Fabian Orozco](https://github.com/DevForozco)
-- Myself
 
-Their contributions to the front-end development in Angular were much appreciated. While the back-end was my responsibility, this project truly reflects our collaborative work. Thanks for your valuable collaboration.
+Their contributions to the front-end development in Angular were much appreciated. 
+
+The back-end was my entire responsibility. 
+
+This project truly reflects our collaborative work. Thanks for your valuable collaboration.
 
 #### **Video Demo:** <https://www.youtube.com/watch?v=MFOxEq9t7nA>
 
