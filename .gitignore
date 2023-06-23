@@ -1,5 +1,6 @@
 node_modules/
 venv/
+.DS_Store
 # Ignore Python compiled bytecode files
 *.pyc
 # Ignore Django migration files bytecode
