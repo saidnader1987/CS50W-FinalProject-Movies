@@ -7,9 +7,9 @@ The front-end of this project was a team effort between 2 great developers and m
 - [Ricardo Vivas](https://github.com/rvivast)
 - [Fabian Orozco](https://github.com/DevForozco)
 
-Their contributions to the front-end development in Angular were much appreciated. 
+Their contributions to the front-end development in Angular were much appreciated.
 
-The back-end was my entire responsibility. 
+The back-end was my entire responsibility.
 
 This project truly reflects our collaborative work. Thanks for your valuable collaboration.
 
@@ -35,17 +35,17 @@ This application also expands on the complexity presented in the eBay-like app a
 
 Furthermore, the decision to use Angular for the frontend, despite only a brief introduction to React in the course, exhibits an additional layer of complexity. Learning and implementing a new framework independently demonstrates not only technical ability but also adaptability and self-directed learning—key attributes in modern web development.
 
-## **How to Run**
+## How to Run
 
-### **Requirements**
+### Requirements
 
-Make sure you have the following installed:
+Before running the application, make sure you have the following installed:
 
-- _Python_ and _pip_ (The Python package installer)
-- _Node.js_ and _npm_ (The Node package manager)
-- _Angular CLI_ (The Angular Command Line Interface)
+- Python and pip (The Python package installer)
+- Node.js and npm (The Node package manager)
+- Angular CLI (The Angular Command Line Interface)
 
-### **Setup and Running the Backend**
+### Backend Setup and Running
 
 1. Navigate to the `movies_back` directory located in the root directory of the project.
 
@@ -59,13 +59,22 @@ Make sure you have the following installed:
    pip install -r requirements.txt
    ```
 
-3. Once all the packages are installed, you can run the backend server with the following command.
+3. (Optional) If you want to start with a fresh database, delete the provided database and perform migrations.
+
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+4. Once all the packages are installed and migrations are performed (if necessary), run the backend server with the following command.
 
    ```bash
    python manage.py runserver
    ```
 
-### **Setup and Running the Frontend**
+   The backend server will start running and listening for requests.
+
+### Frontend Setup and Running
 
 1. Navigate back to the root directory and then into the `movies_front` directory.
 
@@ -86,9 +95,13 @@ Make sure you have the following installed:
    ng serve
    ```
 
-   **Note:** Ensure that the Angular application is running on port 4200, as this is the port where the backend server is set up to listen to requests.
+   The Angular application will be compiled and served on port 4200.
 
-Now you should have both the backend and frontend of the application running. **Enjoy!**
+   Note: Ensure that the Angular application is running on port 4200, as this is the port where the backend server is set up to listen to requests.
+
+4. Open your browser and visit `http://localhost:4200` to access the application.
+
+Now you should have both the backend and frontend of the application running. Enjoy!
 
 ## **Features**
 

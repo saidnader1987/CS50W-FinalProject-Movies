@@ -1,2 +1,8 @@
 node_modules/
 venv/
+# Ignore Python compiled bytecode files
+*.pyc
+# Ignore Django migration files bytecode
+movies_back/movies/migrations/__pycache__/
+movies_back/movies/__pycache__/
+movies_back/movies_back/__pycache__/
